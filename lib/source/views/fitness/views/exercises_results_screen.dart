@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'exercise_info_screen.dart';
 
-class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({Key? key}) : super(key: key);
+class ExercisesResultsScreen extends StatelessWidget {
+  const ExercisesResultsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +56,12 @@ class ResultsScreen extends StatelessWidget {
                               replacable: false,
                               onTap: () {
                                 showModalBottomSheet(
-                          context: context,
-                          useRootNavigator: true,
-                          isScrollControlled: true,
-                          builder: (_) => ExerciseInfoScreen(tryIt: true,));
+                                    context: context,
+                                    useRootNavigator: true,
+                                    isScrollControlled: true,
+                                    builder: (_) => ExerciseInfoScreen(
+                                          tryIt: true,
+                                        ));
                               },
                             ),
                         separatorBuilder: (context, index) =>

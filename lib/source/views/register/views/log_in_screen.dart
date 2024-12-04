@@ -1,4 +1,4 @@
-import 'package:fait/source/providers/bottom_sheet_provider.dart';
+import 'package:fait/source/providers/register/bottom_sheet_provider.dart';
 import 'package:fait/source/views/statistics_screens/views/after_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fait/utils/app_export.dart';
@@ -21,100 +21,96 @@ class LogInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    return SafeArea(
-        child: Scaffold(
-            extendBody: true,
-            extendBodyBehindAppBar: true,
-            resizeToAvoidBottomInset: false,
-            body: Padding(
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: Container(
-                  width: mediaQueryData.size.width,
-                  height: mediaQueryData.size.height,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: const Alignment(0, 0.51),
-                          end: const Alignment(0.95, 0.66),
-                          colors: [
-                        theme.colorScheme.onPrimary,
-                        appTheme.blueGray800,
-                        appTheme.blueGray80001
-                      ])),
-                  child: SingleChildScrollView(
-                    child: Form(
-                        key: _formKey,
-                        child: Container(
-                            width: double.maxFinite,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 41.h, vertical: 60.v),
-                            child: Column(children: [
-                              Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 43.h),
-                                  child: Column(children: [
-                                    CustomImageView(
-                                        imagePath: ImageConstant.imgFait128x128,
-                                        height: 128.adaptSize,
-                                        width: 128.adaptSize,
-                                        radius: BorderRadius.circular(64.h)),
-                                    SizedBox(height: 23.v),
-                                    Text("Fitness AI Trainer",
-                                        style: CustomTextStyles
-                                            .headlineSmallAquire)
-                                  ])),
-                              SizedBox(height: 96.v),
-                              _buildFilledInfoUnfilled(context),
-                              SizedBox(height: 37.v),
-                              Consumer(
-                                builder: (context, ref, child) => InkWell(
-                                    onTap: () {
-                                      onTapTxtForgotPassword(context, ref);
-                                    },
-                                    child: Text(" Forgot  password ? ",
-                                        style: CustomTextStyles
-                                            .bodySmallInterOnPrimaryContainer
-                                            .copyWith(
-                                                decorationColor: Colors.white,
-                                                decoration:
-                                                    TextDecoration.underline))),
-                              ),
-                              SizedBox(height: 5.v)
-                            ]))),
-                  )),
-            )));
+    return Scaffold(
+        extendBody: true,
+        extendBodyBehindAppBar: true,
+        resizeToAvoidBottomInset: false,
+        body: Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Container(
+              width: mediaQueryData.size.width,
+              height: mediaQueryData.size.height,
+              decoration: BoxDecoration(
+                color: theme.colorScheme.onPrimaryContainer,
+              ),
+              child: SingleChildScrollView(
+                child: Form(
+                    key: _formKey,
+                    child: Container(
+                        width: double.maxFinite,
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 41.h, vertical: 60.v),
+                        child: Column(children: [
+                          Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 43.h),
+                              child: Column(children: [
+                                CustomImageView(
+                                    imagePath: ImageConstant.imgFait128x128,
+                                    height: 128.adaptSize,
+                                    width: 128.adaptSize,
+                                    radius: BorderRadius.circular(64.h)),
+                                SizedBox(height: 23.v),
+                                Text("Fitness AI Trainer",
+                                    style: CustomTextStyles.headlineSmallAquire!
+                                        .copyWith(
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.dark
+                                                    ? Colors.white
+                                                    : Colors.black))
+                              ])),
+                          SizedBox(height: 96.v),
+                          _buildFilledInfoUnfilled(context),
+                          SizedBox(height: 37.v),
+                          Consumer(
+                            builder: (context, ref, child) => InkWell(
+                                onTap: () {
+                                  onTapTxtForgotPassword(context, ref);
+                                },
+                                child: Text(" Forgot  password ? ",
+                                    style: CustomTextStyles
+                                        .bodySmallInterOnPrimaryContainer
+                                        .copyWith(
+                                            decorationColor: Colors.white,
+                                            decoration:
+                                                TextDecoration.underline))),
+                          ),
+                          SizedBox(height: 5.v)
+                        ]))),
+              )),
+        ));
   }
 
   /// Section Widget
   Widget _buildFilledInfoUnfilled(BuildContext context) {
     return Container(
-        decoration: AppDecoration.gradientOnPrimaryToBlueGray,
         child: Column(children: [
-          CustomTextFormField(
-              controller: userNameController,
-              hintText: "E-mail or User name",
-              textInputType: TextInputType.emailAddress,
-              borderDecoration: TextFormFieldStyleHelper.fillOnPrimaryContainer,
-              fillColor: theme.colorScheme.onPrimaryContainer.withOpacity(1)),
-          SizedBox(height: 16.v),
-          CustomTextFormField(
-              controller: passwordController,
-              hintText: "Password",
-              textInputAction: TextInputAction.done,
-              textInputType: TextInputType.visiblePassword,
-              isPassword: true,
-              borderDecoration: TextFormFieldStyleHelper.fillOnPrimaryContainer,
-              fillColor: theme.colorScheme.onPrimaryContainer.withOpacity(1)),
-          SizedBox(height: 49.v),
-          CustomElevatedButton(
-              height: 48.v,
-              text: "Log in",
-              buttonStyle: CustomButtonStyles.fillPrimary,
-              buttonTextStyle: CustomTextStyles.headlineSmallRobotoSemiBold,
-              onPressed: () {
-                onTapLogIn(context);
-              })
-        ]));
+      CustomTextFormField(
+          controller: userNameController,
+          hintText: "E-mail or User name",
+          textInputType: TextInputType.emailAddress,
+          borderDecoration: TextFormFieldStyleHelper.fillOnPrimaryContainer,
+          fillColor: theme.colorScheme.onPrimaryContainer.withOpacity(1)),
+      SizedBox(height: 16.v),
+      CustomTextFormField(
+          controller: passwordController,
+          hintText: "Password",
+          textInputAction: TextInputAction.done,
+          textInputType: TextInputType.visiblePassword,
+          isPassword: true,
+          borderDecoration: TextFormFieldStyleHelper.fillOnPrimaryContainer,
+          fillColor: theme.colorScheme.onPrimaryContainer.withOpacity(1)),
+      SizedBox(height: 49.v),
+      CustomElevatedButton(
+          height: 48.v,
+          text: "Log in",
+          buttonStyle: CustomButtonStyles.fillPrimary,
+          buttonTextStyle: CustomTextStyles.headlineSmallRobotoSemiBold,
+          onPressed: () {
+            onTapLogIn(context);
+          })
+    ]));
   }
 
   /// Navigates to the home2AfterLoginScreen when the action is triggered.

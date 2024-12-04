@@ -1,4 +1,3 @@
-import 'package:fait/source/theme/custom_text_style.dart';
 import 'package:fait/utils/app_export.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -34,8 +33,10 @@ class WorkoutCard extends StatelessWidget {
             child: Container(
               margin: EdgeInsets.only(left: 16.h),
               padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 6.v),
-              decoration: AppDecoration.fillBluegray80004
-                  .copyWith(borderRadius: BorderRadiusStyle.roundedBorder8),
+              decoration: AppDecoration.fillBluegray80004.copyWith(
+                borderRadius: BorderRadiusStyle.roundedBorder8,
+                // color: theme.colorScheme.onPrimaryContainer,
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,8 +71,7 @@ class WorkoutCard extends StatelessWidget {
                         width: 5.adaptSize,
                         margin: EdgeInsets.only(top: 7.v, bottom: 8.v),
                         decoration: BoxDecoration(
-                          color: theme.colorScheme.onPrimaryContainer
-                              .withOpacity(0.75),
+                          color: theme.colorScheme.onPrimary.withOpacity(0.75),
                           borderRadius: BorderRadius.circular(2.h),
                         ),
                       ),
@@ -86,8 +86,7 @@ class WorkoutCard extends StatelessWidget {
                         width: 5.adaptSize,
                         margin: EdgeInsets.only(top: 7.v, bottom: 8.v),
                         decoration: BoxDecoration(
-                          color: theme.colorScheme.onPrimaryContainer
-                              .withOpacity(0.75),
+                          color: theme.colorScheme.onPrimary.withOpacity(0.75),
                           borderRadius: BorderRadius.circular(2.h),
                         ),
                       ),

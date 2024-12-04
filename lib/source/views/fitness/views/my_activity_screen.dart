@@ -1,8 +1,8 @@
 import 'package:fait/source/views/fitness/views/exercise_info_screen.dart';
-import 'package:fait/source/views/fitness/views/open_camera_screen/open_camera_screen.dart';
 import 'package:fait/utils/app_export.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../../widgets/custom_elevated_button.dart';
 import '../widgets/in_progress_exercise_card_widget.dart';
@@ -32,7 +32,18 @@ class MyActivityScreen extends StatelessWidget {
                       padding: EdgeInsets.only(bottom: 20.v),
                       child: CustomElevatedButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/open_camera_screen');
+                            getPermissionStatus(context, Permission.microphone,
+                                    "Microphone")
+                                .then((microphonePermission) {
+                              getPermissionStatus(
+                                      context, Permission.camera, "Camera")
+                                  .then((cameraPermission) {
+                                if (microphonePermission && cameraPermission) {
+                                  Navigator.pushNamed(
+                                      context, '/open_camera_screen');
+                                }
+                              });
+                            });
                           },
                           height: 48.v,
                           width: 272.h,
@@ -55,8 +66,10 @@ class MyActivityScreen extends StatelessWidget {
   Widget _buildTopPart(BuildContext context) {
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 26.h, vertical: 30.v),
-        decoration: AppDecoration.outlineSecondaryContainer1
-            .copyWith(borderRadius: BorderRadiusStyle.roundedBorder12),
+        decoration: AppDecoration.outlineSecondaryContainer1.copyWith(
+          borderRadius: BorderRadiusStyle.roundedBorder12,
+          color: theme.colorScheme.onPrimaryContainer,
+        ),
         child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,9 +90,14 @@ class MyActivityScreen extends StatelessWidget {
                               onTapImgArrowLeft(context);
                             }),
                         Padding(
-                            padding: EdgeInsets.only(top: 10.v),
-                            child: Text("My activity",
-                                style: theme.textTheme.headlineLarge)),
+                          padding: EdgeInsets.only(top: 10.v),
+                          child: Text(
+                            "My activity",
+                            style: theme.textTheme.headlineLarge!.copyWith(
+                              color: theme.colorScheme.tertiary,
+                            ),
+                          ),
+                        ),
                         SizedBox(
                           width: 16.h,
                         ),
@@ -92,7 +110,9 @@ class MyActivityScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                             horizontal: 44.h, vertical: 22.v),
                         decoration: AppDecoration.fillBluegray80004.copyWith(
-                            borderRadius: BorderRadiusStyle.roundedBorder32),
+                          borderRadius: BorderRadiusStyle.roundedBorder32,
+                          color: theme.colorScheme.onPrimaryContainer,
+                        ),
                         child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.end,

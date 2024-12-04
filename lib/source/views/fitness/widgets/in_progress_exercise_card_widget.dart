@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-import '../views/replace_with_screen/replace_with_tab_container_screen.dart';
+import '../../../widgets/replace_with_screen/replace_with_tab_container_screen.dart';
 
 // ignore: must_be_immutable
 class InProgressExerciseCardWidget extends StatelessWidget {
@@ -28,6 +28,7 @@ class InProgressExerciseCardWidget extends StatelessWidget {
           ),
           decoration: AppDecoration.fillOnPrimaryContainer.copyWith(
             borderRadius: BorderRadiusStyle.circleBorder16,
+            // color: theme.colorScheme.onPrimaryContainer,
           ),
           child: CustomImageView(
             imagePath: ImageConstant.imgCloseDeepPurpleA200,
@@ -42,10 +43,12 @@ class InProgressExerciseCardWidget extends StatelessWidget {
         GestureDetector(
           onTap: () {
             showModalBottomSheet(
-                    context: context,
-                    useRootNavigator: true,
-                    isScrollControlled: true,
-                    builder: (_) => ReplaceWithTabContainerScreen(inProgressExercise: true,));
+                context: context,
+                useRootNavigator: true,
+                isScrollControlled: true,
+                builder: (_) => ReplaceWithTabContainerScreen(
+                      inProgressExercise: true,
+                    ));
           },
           child: Container(
             height: 32.adaptSize,
@@ -74,7 +77,7 @@ class InProgressExerciseCardWidget extends StatelessWidget {
         onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
-            color: appTheme.blueGray80004,
+            color: theme.colorScheme.onPrimaryContainer,
             borderRadius: BorderRadius.circular(
               8.h,
             ),

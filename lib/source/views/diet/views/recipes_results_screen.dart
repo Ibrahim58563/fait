@@ -1,11 +1,11 @@
-import 'package:fait/source/views/fitness/widgets/exercise_card_widget.dart';
+import 'package:fait/source/views/diet/widgets/recipe_card_widget.dart';
 import 'package:fait/utils/app_export.dart';
 import 'package:flutter/material.dart';
 
-import 'exercise_info_screen.dart';
+import 'recipe_info_screen.dart';
 
-class FavouritesScreen extends StatelessWidget {
-  const FavouritesScreen({Key? key}) : super(key: key);
+class RecipesResultsScreen extends StatelessWidget {
+  const RecipesResultsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +36,11 @@ class FavouritesScreen extends StatelessWidget {
                     child: Align(
                       alignment: AlignmentDirectional.center,
                       child: Text(
-                        "Favourites",
-                        style: CustomTextStyles.titleLargeBold
-                            .copyWith(fontSize: 24.fSize),
+                        "Results",
+                        style: CustomTextStyles.titleLargeBold.copyWith(
+                          fontSize: 24.fSize,
+                          color: theme.colorScheme.tertiary,
+                        ),
                       ),
                     ),
                   ),
@@ -52,16 +54,13 @@ class FavouritesScreen extends StatelessWidget {
                     ListView.separated(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) => ExerciseCardWidget(
-                              favourite: true,
+                        itemBuilder: (context, index) => RecipeCardWidget(
                               onTap: () {
                                 showModalBottomSheet(
                                     context: context,
                                     useRootNavigator: true,
                                     isScrollControlled: true,
-                                    builder: (_) => ExerciseInfoScreen(
-                                          tryIt: true,
-                                        ));
+                                    builder: (_) => const RecipeInfoScreen());
                               },
                             ),
                         separatorBuilder: (context, index) =>

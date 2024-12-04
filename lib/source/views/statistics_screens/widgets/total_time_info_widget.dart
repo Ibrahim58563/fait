@@ -6,13 +6,19 @@ class TotalTimeInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Time in bed", style: theme.textTheme.bodyLarge),
-          Text("8h 32m", style: theme.textTheme.bodyLarge),
+          Text("Time in bed",
+              style: theme.textTheme.bodyLarge!.copyWith(
+                color: theme.colorScheme.tertiary,
+              )),
+          Text("8h 32m",
+              style: theme.textTheme.bodyLarge!.copyWith(
+                color: theme.colorScheme.tertiary,
+              )),
         ],
       ),
     );
